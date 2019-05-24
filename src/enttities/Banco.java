@@ -1,8 +1,13 @@
 package enttities;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import services.InterfaceBanco;
 
 public abstract class Banco implements InterfaceBanco {
+
+    final SimpleDateFormat tempo = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss ");
+    final Calendar calend = Calendar.getInstance();
 
     protected int nAgencia;
     protected int nConta;

@@ -7,10 +7,11 @@ public class Conta extends Banco {
     protected int contagemDep;
     protected int contagemSaque;
     protected int contagemTrans;
-    protected Double usuario;
-    ArrayList<Double> lista = new ArrayList<>();
+
+    //ArrayList<Double> lista = new ArrayList<>();
     ArrayList<Double> listaD = new ArrayList<>();
     ArrayList<Double> listaS = new ArrayList<>();
+    ArrayList<Double> listaT = new ArrayList<>();
 
     public int getContagemDep() {
         return contagemDep;
@@ -40,17 +41,21 @@ public class Conta extends Banco {
     public void saque() {
         this.saldo = (getSaldo() - this.saque);
         this.contagemSaque = +1;// conta a quantidade de transação
-        for (int i = 0; i < this.contagemSaque; i++) {
-            usuario = getSaque();
-            listaS.add(usuario);
-        }
+        //for (int i = 0; i < this.contagemSaque; i++) {
+        Double usuario = getSaque();
+        listaS.add(usuario);
+        //}
 
     }
 
     public void extratoSaque() {
-        System.out.println("extrato saque: ");
+        //System.out.println("extrato saque: ");
         listaS.forEach((extSaque) -> {
-            System.out.println(" + " + extSaque);
+            System.out.println(" - " + extSaque + " (s)");
+        });
+
+        listaT.forEach((extrT) -> {
+            System.out.println(" - " + extrT + " (t)");
         });
 
     }
@@ -59,19 +64,16 @@ public class Conta extends Banco {
     public void Deposito() {
         this.saldo = (getSaldo() + this.deposito);
         this.contagemDep = +1;
-
         //lista.add(getDeposito());
-        for (int i = 0; i < this.contagemDep; i++) {
-            Double usuario1 = getDeposito();
-            listaD.add(usuario1);
-        }
+        Double usuario = getDeposito();
+        listaD.add(usuario);
 
     }
 
     public void extratoDeposito() {
-        System.out.println("Extrato dos depositos: ");
+        //System.out.println("Extrato dos depositos: ");
         listaD.forEach((extDeposito) -> {
-            System.out.println(" - " + extDeposito);
+            System.out.println(" + " + extDeposito + " (d)");
         });
 
     }
@@ -80,13 +82,14 @@ public class Conta extends Banco {
     public void transferencia() {
         if (getSaldo() > 0) {
             this.saldo = (this.getSaldo() - this.getTransferencia());
+            Double usuario = getTransferencia();
+            listaT.add(usuario);
             System.out.println("Transferencia efetuada com sucesso! " + this.getTransferencia());
-            this.contagemTrans++;
-            this.transacoes = true;
+
+            //this.contagemTrans++;
         } else {
             System.out.println("Saldo insuficiente! ");
             this.getSaldo();
-            this.transacoes = false;
         }
 
     }

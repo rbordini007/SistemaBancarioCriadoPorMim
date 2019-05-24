@@ -1,14 +1,14 @@
 package enttities;
 
-public class CC extends Conta {
+public class CP extends Conta {
 
     private String nome;
     private int rg;
 
-    public CC() {
+    public CP() {
     }
 
-    public CC(String nome, int rg) {
+    public CP(String nome, int rg) {
         this.nome = nome;
         this.rg = rg;
 
@@ -32,13 +32,18 @@ public class CC extends Conta {
 
     @Override
     public void tipoDeConta(String tipo) {
-        tipo = getTipoConta();
-        if (("CC".equals(tipo)) || ("cc".equals(tipo))) {
+        if (("CP".equals(tipo)) || ("cp".equals(tipo))) {
             this.setTipoConta("Conta Corrente");
+
             System.out.println("Tipo de Conta: " + this.getTipoConta());
+            System.out.println("Nº Agencia: " + this.getnAgencia());
+            System.out.println("Nº Conta: " + this.getnConta());
+            System.out.println("Nº Ditito: " + this.getnDigito());
             System.out.println("Nome: " + this.getNome());
+            System.out.println("Rg: " + this.getRg());
 
         }
+
     }
 
     @Override
@@ -46,16 +51,11 @@ public class CC extends Conta {
 
         System.out.println("---------------- Extrato Completo -----------------");
         System.out.println();
-        this.setTipoConta("Conta Corrente");
-        System.out.println("Tipo de Conta: " + this.getTipoConta());
         System.out.println("Nome: " + this.getNome());
         informacoes();
         extratoDeposito();
         extratoSaque();
-        System.out.println("Saldo: " + this.getSaldo() + " Tranferencia");
-        System.out.println("");
-
-        System.out.println("data do extrato: " + tempo.format(calend.getTime()));
+        System.out.println("Saldo: " + this.getSaldo());
 
     }
 
