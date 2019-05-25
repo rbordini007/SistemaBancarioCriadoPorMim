@@ -12,4 +12,6 @@ public interface InterfaceBanco {
 
     public void tipoDeConta(String tipo);
 
+    public void limite();
+
 }
